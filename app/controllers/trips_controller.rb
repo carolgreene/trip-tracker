@@ -37,4 +37,42 @@ class TripsController < ApplicationController
     end
   end
 
+  get '/trips/:id/edit' do
+    @trip = Trip.find_by_id(params[:id])
+    if !logged_in?
+      redirect '/login'
+    elsif session[:user_id] == @trip.user_id
+      erb :'trips/edit_trip'
+    else
+      redirect '/trips'
+    end
+  end
+
+  patch '/trips/:id' do
+    @trip = Trip.find_by_id(params[:id])
+    if params[:trip_name].empty? || params[:description].empty?
+      redirect "/trips/#{@trip.id}/edit"
+    else
+      @trip.trip_name = params[:trip_name]
+      @trip.description = params[:description]
+      @trip.save
+      redirect "/trips/#{@trip.id}"
+    end
+  end
+
+  delete 'trips/:id/delete' do
+    @trip = Trip.find_by_id(params[:id])
+
+    if !logged_in
+      redirect '/login'
+    elsif session[:user_id] == @trip.user_id
+
+      @trip.destroy
+      redirect '/trips'
+    else
+      redirect '/trips'
+    end
+  end
+
+
 end
