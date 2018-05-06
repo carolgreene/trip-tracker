@@ -1,0 +1,24 @@
+
+<h1>Edit <%= @trip.trip_name %> Trip</h1>
+
+
+<h2>Current Listing</h2>
+<h3><%= @trip.trip_name %><h3>
+  <h4><%= @trip.description %></h4>
+  <br>
+
+  <h2>Fill in corrected trip information below</h2>
+
+  <form action="/trips/<%= @trip.id %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="PATCH"
+
+    <label>Trip Name</label>
+    <input type="text" name="trip_name" value="<%= @trip.trip_name %>" id="trip_name"><br>
+
+    <label>Trip Description</label>
+    <input type="text" name="description" value="<%= @trip.description %>" id="description"><br>
+    <br>
+
+    <input type="submit" value="Submit">
+  </form>
+    

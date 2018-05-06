@@ -1,0 +1,13 @@
+<h1>Show Trip</h1>
+
+<h1><%= @trip.trip_name %></h1>
+<h2><%= @trip.description %></h2>
+
+<a href="/trips/<%= @trip.id %>/edit"><input type="button" value="Edit Trip"></a>
+
+
+<form method="post" action="/trips/<%=@trip.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete Trip">
+</form>
