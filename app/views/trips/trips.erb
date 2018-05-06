@@ -1,6 +1,10 @@
 <h1>Trip Listing</h1>
 
 <% Trip.all.each do |trip| %>
-<%= trip.trip_name %> 
+<%= trip.trip_name %>
 <%= trip.description %>
 <% end %>
+
+<a href='/trips/new'>Create a New Trip</a>
+<br>
+<a href="/logout">Log Out</a>

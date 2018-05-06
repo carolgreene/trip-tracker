@@ -1,12 +1,6 @@
 class TripsController < ApplicationController
 
-  get 'trips/new' do
-    if !logged_in?
-      redirect '/login'
-    else
-      erb :'/trips/create_trip'
-    end
-  end
+
 
   get '/trips' do
     if !logged_in?
@@ -16,6 +10,17 @@ class TripsController < ApplicationController
       erb :'/trips/trips'
     end
   end
+
+  get '/trips/new' do
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :'/trips/create_trip'
+    end
+  end
+
+
+
 
   post '/trips' do
     if !params[:trip_name].empty? && !params[:description].empty?
@@ -27,6 +32,10 @@ class TripsController < ApplicationController
       redirect '/trips/new'
     end
   end
+
+
+
+
 
   get '/trips/:id' do
     if logged_in?
@@ -60,7 +69,7 @@ class TripsController < ApplicationController
     end
   end
 
-  delete 'trips/:id/delete' do
+  delete '/trips/:id/delete' do
     @trip = Trip.find_by_id(params[:id])
 
     if !logged_in

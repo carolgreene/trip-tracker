@@ -1,0 +1,6 @@
+<h1>Show User Trips</h1>
+
+<% @user.trips.each do |trip| %>
+<%= trip.trip_name %>
+<%= trip.description %>
+<% end %>
