@@ -1,1 +1,6 @@
 <h1>Trip Listing</h1>
+
+<% Trip.all.each do |trip| %>
+<%= trip.trip_name %> 
+<%= trip.description %>
+<% end %>
