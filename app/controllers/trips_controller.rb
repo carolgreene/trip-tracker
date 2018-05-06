@@ -72,14 +72,13 @@ class TripsController < ApplicationController
   delete '/trips/:id/delete' do
     @trip = Trip.find_by_id(params[:id])
 
-    if !logged_in
+    if !logged_in?
       redirect '/login'
     elsif session[:user_id] == @trip.user_id
-
-      @trip.destroy
+      @trip.delete
       redirect '/trips'
     else
-      redirect '/trips'
+      redirect '/'
     end
   end
 
