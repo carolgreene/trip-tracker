@@ -6,4 +6,11 @@
   <input type="text" name="description" placeholder="Description">
   <br>
   <input type="submit" value="Submit">
-</form> 
+</form>
+<br>
+
+<% @user = current_user %>
+<br>
+<a href='/trips'>Go to Main Trip Listing</a> |
+<a href="/users/<%= @user.slug %>">Take me to My Trips</a> |
+<a href="/logout">Log Out</a>
