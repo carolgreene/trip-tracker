@@ -5,15 +5,14 @@
 <% Trip.all.each do |trip| %>
 <li><%= trip.trip_name %></li>
 <p><%= trip.description %></p>
-<p><%= trip.user_id %></p>   <!-- want to put username in here-->
+<p><%= trip.user_id %></p>
 <% end %>
 <br>
-
-<%= @user = current_user %>
+<% @user = current_user %>
+<br>
 <a href="/users/<%= @user.slug %>">My Trips</a>
 
 <br>
 <a href='/trips/new'>Create a New Trip</a>
 <br>
 <a href="/logout">Log Out</a>
-
