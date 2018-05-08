@@ -9,8 +9,11 @@
 <% end %>
 <br>
 
+<%= @user = current_user %>
+<a href="/users/<%= @user.slug %>">My Trips</a>
 
 <br>
 <a href='/trips/new'>Create a New Trip</a>
 <br>
 <a href="/logout">Log Out</a>
+
