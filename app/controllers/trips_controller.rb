@@ -23,6 +23,7 @@ class TripsController < ApplicationController
 
 
   post '/trips' do
+    #binding.pry
     if !params[:trip_name].empty? && !params[:description].empty?
       @trip = Trip.create(trip_name: params["trip_name"], description: params["description"])
       @trip.user_id = session[:user_id]
