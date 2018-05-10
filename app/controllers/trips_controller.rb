@@ -1,9 +1,12 @@
-class TripsController < ApplicationController
+require 'rack-flash'
 
+class TripsController < ApplicationController
+  use Rack::Flash
 
 
   get '/trips' do
     if !logged_in?
+      flash[:message] = "You have to sign in to do that"
       redirect '/login'
     else
       @user = User.find(session[:user_id])
@@ -13,13 +16,12 @@ class TripsController < ApplicationController
 
   get '/trips/new' do
     if !logged_in?
+      flash[:message] = "You have to sign in to do that"
       redirect '/login'
     else
       erb :'/trips/create_trip'
     end
   end
-
-
 
 
   post '/trips' do
@@ -35,25 +37,29 @@ class TripsController < ApplicationController
   end
 
 
-
-
-
   get '/trips/:id' do
-    if logged_in?
-      @trip = Trip.find_by_id(params[:id])
-      erb :'/trips/show_trip'
-    else
-      redirect '/login'
+    @trip = Trip.find_by_id(params[:id])
+      if !logged_in?
+        flash[:message] = "You have to sign in to do that"
+        redirect '/login'
+      elsif session[:user_id] == @trip.user_id
+
+        erb :'/trips/show_trip'
+      else
+        flash[:message] = "You can only go to your own trips"
+        redirect '/trips'
+      end
     end
-  end
 
   get '/trips/:id/edit' do
     @trip = Trip.find_by_id(params[:id])
     if !logged_in?
+      flash[:message] = "You have to sign in to do that"
       redirect '/login'
     elsif session[:user_id] == @trip.user_id
       erb :'trips/edit_trip'
     else
+      flash[:message] = "You can only edit your own trips"
       redirect '/trips'
     end
   end
@@ -74,12 +80,14 @@ class TripsController < ApplicationController
     @trip = Trip.find_by_id(params[:id])
 
     if !logged_in?
+      flash[:message] = "You have to sign in to do that"
       redirect '/login'
     elsif session[:user_id] == @trip.user_id
       @trip.delete
       redirect '/trips'
     else
-      redirect '/'
+      flash[:message] = "You can only delete your own trips"
+      redirect '/trips'
     end
   end
 
