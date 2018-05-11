@@ -1,18 +1,13 @@
-
-
-
 <h1><%= current_user.username %>'s Trips</h1>
 <h2>Click on a trip to edit or delete it</h2>
 
 <% @user.trips.each do |trip| %>
 <li><a href="/trips/<%= trip.id %>"><%= trip.trip_name %></a></li>
 <p><%= trip.description %></p>
-
-
 <% end %>
 <br>
 
 
 <a href='/trips/new'>Create a New Trip</a>  |
-<a href='/trips'>Go to Main Trip Listing</a>  |
+<a href='/trips'>Main Trip Listing</a>  |
 <a href="/logout">Log Out</a>

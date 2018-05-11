@@ -1,8 +1,4 @@
-
-
-
 <h1>Edit <%= @trip.trip_name %> Trip</h1>
-
 
 <h2>Current Listing</h2>
 <h3><%= @trip.trip_name %><h3>
@@ -27,6 +23,6 @@
 
   <% @user = current_user %>
   <br>
-  <a href='/trips'>Go to Main Trip Listing</a> |
-  <a href="/users/<%= @user.slug %>">Take me to My Trips</a> |
+  <a href='/trips'>Main Trip Listing</a> |
+  <a href="/users/<%= @user.slug %>">My Trips</a> |
   <a href="/logout">Log Out</a>
