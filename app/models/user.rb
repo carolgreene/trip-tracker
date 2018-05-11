@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :trips
 
   validates_presence_of  :username, :email, :password_digest
-  validates_uniqueness_of :username, presence: {message: "That username is already taken, please use another username."}
+  validates_uniqueness_of :username, :email
 
 
   def slug

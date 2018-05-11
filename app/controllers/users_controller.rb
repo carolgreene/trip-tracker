@@ -33,7 +33,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/trips'
     else
-      redirect '/login'
+      flash[:message] = "Username or Password does not match our files. Please try again"
+      erb :'/users/login'
     end
   end
 
@@ -54,9 +55,9 @@ class UsersController < ApplicationController
     if !@user.nil? && @user == current_user
       erb :'/users/show'
     else
+      flash[:message] = "You can only see a list of your own trips"
       redirect '/trips'
     end
   end
-
 
 end
