@@ -5,7 +5,7 @@
 <% Trip.all.each do |trip| %>
 <li><%= trip.trip_name %></li>
 <p><%= trip.description %></p>
-<p><%= trip.user_id %></p>
+
 <% end %>
 <br>
 <% @user = current_user %>
