@@ -1,8 +1,6 @@
 # TripTracker
-
-
-
-
+TripTracker is an easy to use Sinatra App to keep track of trips the user has taken or would like to take. User will sign up & have an encrypted password. Will then be able to view other users trips in a master list or go to a list of their own trips.
+From there they can go to the show page for each individual trip and can Edit or Delete their trips.
 
 ## Installation
 
